@@ -16,15 +16,17 @@ Pebble.addEventListener("ready", function(e) {
 
 Pebble.addEventListener("showConfiguration", function() {
   console.log("Config opened");
-  Pebble.openURL("https://eddiezane.ngrok.com");
+  Pebble.openURL("https://s3.amazonaws.com/assets.eddiezane.me/config.html");
 });
 
 Pebble.addEventListener("webviewclosed", function(e) {
   console.log("Config closed");
-  options = JSON.parse(decodeURIComponent(e.response));
-  window.localStorage.setItem('username', options.username);
-  window.localStorage.setItem('password', options.password);
-  doLogin();
+  if(e.response){
+    options = JSON.parse(decodeURIComponent(e.response));
+    window.localStorage.setItem('username', options.username);
+    window.localStorage.setItem('password', options.password);
+    doLogin();
+  }
 });
 
 Pebble.addEventListener("appmessage", function(e) {
