@@ -1,10 +1,10 @@
 #include <pebble.h>
 
-typedef enum {
+enum {
   ARM,
   DISARM,
   REMOTE
-} COMMAND;
+};
 
 static Window *window;
 static TextLayer *text_layer;
@@ -66,7 +66,7 @@ static void window_load(Window *window) {
   GRect bounds = layer_get_bounds(window_layer);
 
   text_layer = text_layer_create((GRect) { .origin = { 0, 72 }, .size = { bounds.size.w, 20 } });
-  text_layer_set_text(text_layer, "Press a button");
+  text_layer_set_text(text_layer, "Up: Unlock\nSelect: Start\nDown: Lock");
   text_layer_set_text_alignment(text_layer, GTextAlignmentCenter);
   layer_add_child(window_layer, text_layer_get_layer(text_layer));
 }
